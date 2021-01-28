@@ -15,11 +15,13 @@ const Widget = styled.div`
     font-weight: 700;
     line-height: 1;
     margin-bottom: 0;
+    font-family: Lato;
   }
   p {
     font-size: 14px;
     font-weight: 400;
     line-height: 1;
+    font-family: Lato;
   }
 `;
 
@@ -46,6 +48,12 @@ Widget.Content = styled.div`
   ul {
     list-style: none;
     padding: 0;
+  }
+  li {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    margin-top: 3%;
+    padding: 3%;
+    border-radius: 4px;
   }
 `;
 
