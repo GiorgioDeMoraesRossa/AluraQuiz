@@ -5,35 +5,12 @@ import { useRouter } from "next/router";
 import db from "../db";
 import Widget from "../src/components/Widget";
 import QuizBackground from "../src/components/QuizBackground";
-import QuizContainer from "../src/components/Container";
+import QuizContainer from "../src/components/QuizContainer";
 import Footer from "../src/components/Footer";
 import GitHubCorner from "../src/components/GitHubCorner";
 import QuizLogo from "../src/components/QuizLogo";
-
-const Input = styled.input`
-  width: 100%;
-  height: 38px;
-  padding: 3%;
-  padding-left: 4%;
-  background: transparent;
-  color: #fff;
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 4px;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  margin-top: 24px;
-  height: 38px;
-  padding: 3%;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  font-family: Lato;
-  border: 0px solid;
-  border-radius: 4px;
-`;
+import Input from "../src/components/Input";
+import Button from "../src/components/Button";
 
 export default function Home() {
   const router = useRouter();
@@ -56,18 +33,13 @@ export default function Home() {
             <p>Teste seus conhecimentos sobre Dota 2 e divirta-se!</p>
             <form onSubmit={handleSubmit}>
               <Input
+                name="nomeDoUsuario"
                 placeholder="Digite seu nome"
                 onChange={(event) => setName(event.target.value)}
+                value={name}
               />
-              <Button
-                type="submit"
-                disabled={name.length === 0}
-                style={{
-                  cursor: name.length === 0 ? "default" : "pointer",
-                  backgroundColor: name.length === 0 ? "gray" : "",
-                }}
-              >
-                Jogar
+              <Button type="submit" disabled={name.length === 0}>
+                {`Jogar ${name}`}
               </Button>
             </form>
           </Widget.Content>
