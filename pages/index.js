@@ -11,6 +11,8 @@ import GitHubCorner from "../src/components/GitHubCorner";
 import QuizLogo from "../src/components/QuizLogo";
 import Input from "../src/components/Input";
 import Button from "../src/components/Button";
+import Link from "../src/components/Link";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const router = useRouter();
@@ -25,7 +27,16 @@ export default function Home() {
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{ delay: 0, duration: 0.5 }}
+          variants={{
+            show: { opacity: 1, y: "0" },
+            hidden: { opacity: 0, y: "100%" },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Header>
             <h1>Dota 2</h1>
           </Widget.Header>
@@ -44,18 +55,50 @@ export default function Home() {
             </form>
           </Widget.Content>
         </Widget>
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          variants={{
+            show: { opacity: 1, y: "0" },
+            hidden: { opacity: 0, y: "100%" },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Content>
             <h1>Quiz da galera</h1>
             <p>Dá uma olhada nesses outroz quizes dahora!!</p>
             <ul>
-              <li>clebinhodj/showdomilhaoalura</li>
-              <li>joaokleberprogramador/aluraqiz</li>
-              <li>demervalthelegend/imersao-alura</li>
+              {db.external.map((linkExterno) => {
+                const [projectName, gitHubUser] = linkExterno
+                  .replace(/\//g, "")
+                  .replace("https:", "")
+                  .replace(".vercel.app", "")
+                  .split(".");
+                return (
+                  <li key={linkExterno}>
+                    <Widget.Topic
+                      as={Link}
+                      href={`/quiz/${projectName}___${gitHubUser}`}
+                    >
+                      {`${projectName}/${gitHubUser}`}
+                    </Widget.Topic>
+                  </li>
+                );
+              })}
             </ul>
           </Widget.Content>
         </Widget>
-        <Footer />
+        <Footer
+          as={motion.footer}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          variants={{
+            show: { opacity: 1, y: "0" },
+            hidden: { opacity: 0, y: "100%" },
+          }}
+          initial="hidden"
+          animate="show"
+        />
         <GitHubCorner projectUrl="https://github.com/GiorgioDeMoraesRossa" />
       </QuizContainer>
     </QuizBackground>

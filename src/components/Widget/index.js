@@ -50,7 +50,7 @@ Widget.Content = styled.div`
     padding: 0;
   }
   li {
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.primary};
     margin-top: 3%;
     padding: 3%;
     border-radius: 4px;
