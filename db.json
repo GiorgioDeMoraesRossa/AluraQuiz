@@ -15,7 +15,7 @@
       "title": "Qual o custo total do item Linken's sphere(Esfera de Linken)?",
       "description": "Caro demais, prefiro lotus.",
       "answer": 0,
-      "alternatives": ["5050", "4000", "4700", "5550", "4200"]
+      "alternatives": ["4600", "4000", "4700", "5550", "4200"]
     },
     {
       "image": "https://www.dotafire.com/images/skill/lone-druid-battle-cry.png",
@@ -33,7 +33,7 @@
         "Cura os aliados",
         "Tem o maior tempo de canalização em 4 segundos",
         "Possui campo de alcance de 1200",
-        "Aplica um stun de até 3,5 segundos",
+        "Aplica um stun de até 2,9 segundos",
         "Aplica 290 de dano no alvo inimigo"
       ]
     },
