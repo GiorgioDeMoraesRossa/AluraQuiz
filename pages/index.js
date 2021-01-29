@@ -50,7 +50,7 @@ export default function Home() {
                 value={name}
               />
               <Button type="submit" disabled={name.length === 0}>
-                {`Jogar ${name}`}
+                {`Jogar como ${name}`}
               </Button>
             </form>
           </Widget.Content>
@@ -76,10 +76,24 @@ export default function Home() {
                   .replace(".vercel.app", "")
                   .split(".");
                 return (
-                  <li key={linkExterno}>
+                  <li
+                    key={linkExterno}
+                    style={{
+                      backgroundColor: name.length === 0 ? "#979797" : "",
+                      cursor: name.length === 0 ? "not-allowed" : "",
+                    }}
+                  >
                     <Widget.Topic
+                      style={{
+                        backgroundColor: name.length === 0 ? "#979797" : "",
+                        cursor: name.length === 0 ? "not-allowed" : "",
+                      }}
                       as={Link}
-                      href={`/quiz/${projectName}___${gitHubUser}`}
+                      href={
+                        name.length === 0
+                          ? ""
+                          : `/quiz/${projectName}___${gitHubUser}?name=${name}`
+                      }
                     >
                       {`${projectName}/${gitHubUser}`}
                     </Widget.Topic>

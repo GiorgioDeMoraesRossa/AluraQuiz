@@ -2,12 +2,13 @@ import React from "react";
 import QuizScreen from "../../src/Screens/Quiz";
 import { ThemeProvider } from "styled-components";
 
-export default function QuizDaGaleraPage({ dbExterno }) {
+export default function QuizDaGaleraPage({ dbExterno, name }) {
   return (
     <ThemeProvider theme={dbExterno.theme}>
       <QuizScreen
         externalQuestions={dbExterno.questions}
         externalBg={dbExterno.bg}
+        name={name}
       />
     </ThemeProvider>
   );
@@ -32,6 +33,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       dbExterno,
+      name: context.query.name,
     },
   };
 }

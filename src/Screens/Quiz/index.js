@@ -20,10 +20,13 @@ function LoadingWidget() {
   );
 }
 
-function ResultWidget({ results }) {
+function ResultWidget({ results, name }) {
   return (
     <Widget>
-      <Widget.Header>Total dos resultados </Widget.Header>
+      <Widget.Header>
+        <BackLinkArrow href="/" />
+        Total dos resultados para {name}
+      </Widget.Header>
 
       <Widget.Content>
         <p>Voce acertou {results.filter((x) => x).length} perguntas</p>
@@ -46,6 +49,7 @@ function QuestionWidget({
   questionIndex,
   onSubmit,
   addResult,
+  name,
 }) {
   const [selectedAlternative, setSelectedAlternative] = useState(undefined);
   const [isFormSubmited, setIsFormSubmited] = useState();
@@ -56,12 +60,16 @@ function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
+        <h3>{`Jogador: ${name}`}</h3>
+      </Widget.Header>
+      <Widget.Header>
         <BackLinkArrow href="/" />
         <h3>
           {` Pergunta ${questionIndex + 1} de
            ${totalQuestions}`}
         </h3>
       </Widget.Header>
+
       <img
         alt="Descrição"
         style={{
@@ -83,6 +91,7 @@ function QuestionWidget({
               addResult(isCorrect);
               onSubmit();
               setIsFormSubmited(false);
+              setSelectedAlternative(undefined);
             }, 1000);
           }}
         >
@@ -133,7 +142,7 @@ const screenStates = {
   RESULT: "RESULT",
 };
 
-export default function QuizPage({ externalQuestions, externalBg }) {
+export default function QuizPage({ externalQuestions, externalBg, name }) {
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [results, setResults] = useState([]);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -171,13 +180,14 @@ export default function QuizPage({ externalQuestions, externalBg }) {
             questionIndex={questionIndex}
             onSubmit={handleSubmitQuiz}
             addResult={addResult}
+            name={name}
           />
         )}
 
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
         {screenState === screenStates.RESULT && (
-          <ResultWidget results={results} />
+          <ResultWidget results={results} name={name} />
         )}
 
         <Footer />
